@@ -19,16 +19,7 @@ descriptionElement.innerText = article.description ?? "Pas de description pour l
 const stockElement = document.createElement("p");
 stockElement.innerText = article.disponibilite ? "En stock" : "Rupture de stock";
 
-//Rattachement de nos balises au DOM
-const sectionFiches = document.querySelector(".fiches");
-sectionFiches.appendChild(imageElement);
-sectionFiches.appendChild(nomElement);
-sectionFiches.appendChild(prixElement);
-sectionFiches.appendChild(categorieElement);
 
-//Ajout des éléments au DOM pour l'exercice
-sectionFiches.appendChild(descriptionElement);
-sectionFiches.appendChild(stockElement);
 
 for (let i = 0; i < pieces.length; i++) {
 
@@ -48,3 +39,22 @@ for (let i = 0; i < pieces.length; i++) {
     pieceElement.appendChild(imageElement);
     // Idem pour le nom, le prix et la catégorie...
     }
+
+    const boutonTrier = document.querySelector(".btn-trier");
+
+    boutonTrier.addEventListener("click", function () {
+        const piecesOrdonnees = Array.from(pieces);
+        piecesOrdonnees.sort(function (a, b) {
+            return a.prix - b.prix;
+         });
+         console.log(piecesOrdonnees);
+     });
+
+const boutonFiltrer = document.querySelector(".btn-filtrer");
+
+boutonFiltrer.addEventListener("click", function () {
+   const piecesFiltrees = pieces.filter(function (piece) {
+       return piece.prix <= 35;
+   });
+   ;
+
